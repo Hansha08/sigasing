@@ -1,0 +1,9 @@
+<script src="pulgins/datatables/jquery.dataTables.min.js"></script>
+<script src="pulgins/datatables-bs4/js/dataTables.boostrap4.min.js"></script>
+<script src="pulgins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="pulgins/datatables-responsive/js/responsive.boostrap4.min.js"></script>
+<script src="pulgins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="pulgins/datatables-buttons/js/buttons.boostrap4.min.js"></script>
+<script src="pulgins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="pulgins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="pulgins/datatables-buttons/js/buttons.colVis.min.js"></script>
