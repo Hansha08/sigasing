@@ -1,3 +1,38 @@
+<?php
+if (isset($_POST['button_create'])) {
+
+    $database = new Database();
+    $db = $database->getConnection();
+
+    $insertSql = "INSERT INTO lokasi set nama_lokasi = '" . $_POST['nama_lokasi'] . "'";
+    $stmt = $db->prepare($insertSql);
+    $stmt->bindParam(1,$_POST['nama_lokasi']);
+    $stmt->execute();
+    if($stmt->rowCount() > 0){
+        ?>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                <h5><i class="icon fas fa-ban"></i>Gagal</h5>
+                Nama Lokasi Sama Sudah Ada
+            </div>
+        
+        <?php
+    }else {
+        $insertSql = "INSERT INTO lokasi SET nama_lokasi = ?";
+        $stmt = $db->prepare($insertSql);
+        $stmt->bindParam(1, $_POST['nama_lokasi']);
+    if ($stmt->execute()){
+        $_SESSION['hasil'] = true;
+        $_SESSION['pesan'] = "Berhasil Simpan Data";
+    }else {
+        $_SESSION['hasil'] = false;
+        $_SESSION['pesan'] = "Gagal Simpan Data";
+    }
+    echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+ }
+}
+?>
+
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb2">
