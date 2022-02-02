@@ -3,7 +3,7 @@
 <div class="content-header">
       <div class="container-fluid">
       <?php
-      if(isset($_SESSION["hasil"]) {
+      if (isset($_SESSION["hasil"])) {
           if ($_SESSION["hasil"]) {
       ?>
              <div class="alert alert-success alert-dismissible">
@@ -21,9 +21,9 @@
             </div>
     <?php
         }
-        unset($_SESSION['hasil']):
-        unset($_SESSION['pesan']):
-      }
+        unset($_SESSION['hasil']);
+        unset($_SESSION['pesan']);
+    }
       ?>
         <div class="row mb-2">
           <div class="col-sm-6">
