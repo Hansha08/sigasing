@@ -1,0 +1,1 @@
+section.content-header>.container-fluid>.row.mb2>[class=col-sm-6]*2
