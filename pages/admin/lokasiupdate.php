@@ -7,10 +7,44 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $findSql = "SELECT * FROM lokasi WHERE id = ?";
     $stmt = $db->prepare($findSql);
-    $stmt->bindParan(1, $_GET['id']);
+    $stmt->bindParam(1, $_GET['id']);
     $stmt->execute();
     $row = $stmt->fetch();
     if(isset($row['id'])){
+        if (isset($_POST['button_update'])) {
+           
+            $database = new Database();
+            $db = $database->getConnection();
+
+            $validateSql = "SELECT * FROM lokasi WHERE nama_lokasi = ? AND id != ?";
+            $stmt = $db->prepare($validateSql);
+            $stmt->bindParam(1, $_POST['nama_lokasi']);
+            $stmt->bindParam(2, $_POST['id']);
+            $stmt->execute();
+            if ($stmt->rowCount() > 0) {
+?>
+                <div class="alert alert-danger alert-dismissible">
+                    <buttons type="button" class="close" data-dismiss="alert" aria-hidden="true">x</buttons>
+                    <h5><i class="icon fas fa-ban"></i> Gagal</h5>
+                    Nama Lokasi Sama Sudah Ada
+                </div>   
+        <?php     
+            } else {
+                $updateSql = "UPDATE lokasi SET nama_lokasi = ? WHERE id  = ?";
+                $stmt = $db->prepare($updateSql);
+                $stmt->bindParam(1, $_POST['nama_lokasi']);
+                $stmt->bindParam(2, $_POST['id']);
+            if ($stmt->execute()){
+                $_SESSION['hasil'] = true;
+                $_SESSION['pesan'] = "Berhasil Ubah Data";
+            }else {
+                $_SESSION['hasil'] = false;
+                $_SESSION['pesan'] = "Gagal Ubah Data";
+            }
+            echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+         }
+            
+        }
 ?>
 <section class="content-header">
     <div class="container-fluid">
@@ -37,7 +71,7 @@ if (isset($_GET['id'])) {
             <form method="POST">
                 <div class="form-group">
                     <label for="nama_lokasi">Nama Lokasi</label>
-                    <input type="hidden" class="form-control" name="id" value="<?php echo $row['id']?>"
+                    <input type="hidden" class="form-control" name="id" value="<?php echo $row['id']?>">
                     <input type="text" class="form-control" name="nama_lokasi" value=" <?php echo $row['nama_lokasi'] ?>">
                 </div>
                 <a href="?page=lokasiread" class="btn btn-danger btn-sm float-right">

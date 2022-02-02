@@ -4,8 +4,8 @@ if (isset($_POST['button_create'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $insertSql = "INSERT INTO lokasi set nama_lokasi = '" . $_POST['nama_lokasi'] . "'";
-    $stmt = $db->prepare($insertSql);
+    $validateSql = "SELECT * FROM lokasi WHERE nama_lokasi = ?";
+    $stmt = $db->prepare($validateSql);
     $stmt->bindParam(1,$_POST['nama_lokasi']);
     $stmt->execute();
     if($stmt->rowCount() > 0){
