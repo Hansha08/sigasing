@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
     <div class="container-fluid">
         <div class="row mb2">
             <div class="col-sm-6">
-                <h1>Ubah Data Lokasi</h1>
+                <h1>Ubah Data Lokasii</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
