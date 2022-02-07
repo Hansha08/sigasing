@@ -42,7 +42,7 @@
                 </a>
               </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="?page=jabatanread" class="nav-link">
               <p>
               <i class="far fa-circle nav-icon"></i>
                 Jabatan
